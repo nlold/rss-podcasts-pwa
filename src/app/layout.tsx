@@ -1,7 +1,5 @@
 "use client";
 
-import { useEffect } from "react";
-
 import { CommonProvider } from "@/components/CommonContext/CommonContext";
 import SideNav from "@/components/SideNav/SideNav";
 
@@ -12,25 +10,6 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  // Регистрация Service Worker
-  useEffect(() => {
-    if ("serviceWorker" in navigator) {
-      window.addEventListener("load", () => {
-        navigator.serviceWorker
-          .register("/service-worker.js")
-          .then((registration) => {
-            console.log(
-              "Service Worker registered with scope:",
-              registration.scope
-            );
-          })
-          .catch((error) => {
-            console.log("Service Worker registration failed:", error);
-          });
-      });
-    }
-  }, []);
-
   return (
     <html lang="ru">
       <head>
